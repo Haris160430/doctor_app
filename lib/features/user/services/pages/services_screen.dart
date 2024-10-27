@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:mardanorthodonticcenter/core/theme/app_colors.dart';
 import 'package:mardanorthodonticcenter/core/widgets/appbar_widgets.dart';
 import 'package:mardanorthodonticcenter/features/user/appointment/pages/appointment_screen.dart';
+import 'package:mardanorthodonticcenter/features/user/review_screen/pages/review_screen.dart';
 import 'package:mardanorthodonticcenter/features/user/widgets/services_container.dart';
 import 'package:pull_to_refresh_flutter3/pull_to_refresh_flutter3.dart';
 
 import '../../../../core/models/services_model/services_model.dart';
+import '../../videos/pages/video_Screen.dart';
 import '../controller/services_controller.dart';
 
 class ServicesScreen extends StatefulWidget {
@@ -35,7 +37,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
              ):myIndex == 2?AppbarWidgets(
              Width: 150, appbartext: 'Videos',
              ):AppbarWidgets(
-              Width: 132, appbartext: '',
+              Width: 132, appbartext: 'Review',
             )
         ),
         body:  myIndex == 0?
@@ -57,7 +59,8 @@ class _ServicesScreenState extends State<ServicesScreen> {
                   url:   controller.services[i].image!,
                 ),
               );
-            }):Center(child: CircularProgressIndicator()): myIndex == 1? AppointmentScreen():SizedBox(),
+            }):Center(child: CircularProgressIndicator()):
+        myIndex == 1? AppointmentScreen(): myIndex == 2?VideoScreen():  myIndex == 3? ReviewScreen():SizedBox(),
         bottomNavigationBar: NavigationBar(
           indicatorColor: Colors.white,
           height: 60,
